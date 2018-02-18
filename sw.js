@@ -20,7 +20,7 @@ const PRECACHE_LIST = [
   "./js/hux-blog.min.js",
   "./js/snackbar.js",
   "./img/icon_wechat.png",
-  "./img/avatar-hux.jpg",
+  "./img/avatar.png",
   "./img/home-bg.jpg",
   "./img/404-bg.jpg",
   "./css/hux-blog.min.css",
@@ -121,8 +121,8 @@ self.addEventListener('activate', event => {
   // delete old deprecated caches.
   caches.keys().then(cacheNames => Promise.all(
     cacheNames
-      .filter(cacheName => DEPRECATED_CACHES.includes(cacheName))
-      .map(cacheName => caches.delete(cacheName))
+    .filter(cacheName => DEPRECATED_CACHES.includes(cacheName))
+    .map(cacheName => caches.delete(cacheName))
   ))
   console.log('service worker activated.')
   event.waitUntil(self.clients.claim());
@@ -131,10 +131,13 @@ self.addEventListener('activate', event => {
 
 var fetchHelper = {
 
-  fetchThenCache: function(request){
+  fetchThenCache: function (request) {
     // Requests with mode "no-cors" can result in Opaque Response,
     // Requests to Allow-Control-Cross-Origin: * can't include credentials.
-    const init = { mode: "cors", credentials: "omit" } 
+    const init = {
+      mode: "cors",
+      credentials: "omit"
+    }
 
     const fetched = fetch(request, init)
     const fetchedCopy = fetched.then(resp => resp.clone());
@@ -143,15 +146,15 @@ var fetchHelper = {
     //       so Opaque Resp will not be cached in this case.
     Promise.all([fetchedCopy, caches.open(CACHE)])
       .then(([response, cache]) => response.ok && cache.put(request, response))
-      .catch(_ => {/* eat any errors */})
-    
+      .catch(_ => { /* eat any errors */ })
+
     return fetched;
   },
 
-  cacheFirst: function(url){
-    return caches.match(url) 
+  cacheFirst: function (url) {
+    return caches.match(url)
       .then(resp => resp || this.fetchThenCache(url))
-      .catch(_ => {/* eat any errors */})
+      .catch(_ => { /* eat any errors */ })
   }
 }
 
@@ -178,7 +181,7 @@ self.addEventListener('fetch', event => {
     }
 
     // Cache-only Startgies for ys.static resources
-    if (event.request.url.indexOf('ys.static') > -1){
+    if (event.request.url.indexOf('ys.static') > -1) {
       event.respondWith(fetchHelper.cacheFirst(event.request.url))
       return;
     }
@@ -187,9 +190,11 @@ self.addEventListener('fetch', event => {
     // similar to HTTP's stale-while-revalidate: https://www.mnot.net/blog/2007/12/12/stale
     // Upgrade from Jake's to Surma's: https://gist.github.com/surma/eb441223daaedf880801ad80006389f1
     const cached = caches.match(event.request);
-    const fetched = fetch(getCacheBustingUrl(event.request), { cache: "no-store" });
+    const fetched = fetch(getCacheBustingUrl(event.request), {
+      cache: "no-store"
+    });
     const fetchedCopy = fetched.then(resp => resp.clone());
-    
+
     // Call respondWith() with whatever we get first.
     // Promise.race() resolves with first one settled (even rejected)
     // If the fetch fails (e.g disconnected), wait for the cache.
@@ -197,15 +202,15 @@ self.addEventListener('fetch', event => {
     // If neither yields a response, return offline pages.
     event.respondWith(
       Promise.race([fetched.catch(_ => cached), cached])
-        .then(resp => resp || fetched)
-        .catch(_ => caches.match('offline.html'))
+      .then(resp => resp || fetched)
+      .catch(_ => caches.match('offline.html'))
     );
 
     // Update the cache with the version we fetched (only for ok status)
     event.waitUntil(
       Promise.all([fetchedCopy, caches.open(CACHE)])
-        .then(([response, cache]) => response.ok && cache.put(event.request, response))
-        .catch(_ => {/* eat any errors */ })
+      .then(([response, cache]) => response.ok && cache.put(event.request, response))
+      .catch(_ => { /* eat any errors */ })
     );
 
     // If one request is a HTML naviagtion, checking update!
@@ -246,7 +251,7 @@ function sendMessageToClientsAsync(msg) {
 /**
  * if content modified, we can notify clients to refresh
  * TODO: Gh-pages rebuild everything in each release. should find a workaround (e.g. ETag with cloudflare)
- * 
+ *
  * @param  {Promise<response>} cachedResp  [description]
  * @param  {Promise<response>} fetchedResp [description]
  * @return {Promise}

@@ -1,11 +1,11 @@
 # Site settings
-title: MXLiao Blog
-SEOTitle: MXLiao Blog
+title: Marcy Blog
+SEOTitle: Marcy Blog
 header-img: img/home-bg.jpg
 email: marcyliew@gmail.com
 description: "Software Engineer，Focus on Backend, but could do full stack | Just a blog to share tech notes, and thoughts"
 keyword: "Software Engineer"
-url: "mxliao.github.io"
+url: "marcyliao.me"
 baseurl: ""
 
 
@@ -44,7 +44,7 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: hux
+disqus_username: mengxiliao
 
 # Netease setttings
 netease_comment: false
@@ -56,21 +56,21 @@ netease_comment: false
 # ba_track_id: [your track id]
 
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_track_id: 'xxx'            # Format: UA-xxxxxx-xx
+ga_domain: xxx
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "A coder who is chasing expectation"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "A coder and a father"
+sidebar-avatar: /img/avatar.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
 # Featured Tags
 featured-tags: true                     # whether or not using Feature-Tags
-featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+featured-condition-size: 0              # A tag will be featured if the size of it is more than this condition value
 
 
 
