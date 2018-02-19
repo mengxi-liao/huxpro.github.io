@@ -1,0 +1,36 @@
+---
+layout:     post
+title:      "Hello 2018"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2018-02-17 12:00:00
+author:     "Marcy"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - Life
+---
+
+> “Hello 2018”
+
+
+## About 2017
+
+Today is Feb 16, 2018, the Chinese New Year.
+
+2017 was kind of frustrating to me.
+
+I started the year by building my own startup but it did not have much progress. My partner and I kept changing ideas and building MVPs. But to be honest, we never have a convincing idea. And that's why no user is willing to use our products.
+
+Then I started looking for jobs. I failed some interviews with the companies I want to join. It's disappointing as I studied very hard to prepare the interviews, though I don't think I failed due to my skills. I won't give up and will try to apply again in middle 2018. I got a position as a senior engineer in IT Glue, a decent local startup in Vancouver. I think It's a good place to improve my experience.
+
+2017 was also a big year to me as a father. Ivanka, my daughter, was born to have a birthmark on her face which worried my wife and me. We took her back to China and to New York for Laser treatments. We did 9 treatments to the poor little one and will have to continue more treatments in Vancouver. She also got some delay in speaking development, but luckily we could see her some big progress in the recent month.
+
+
+## Why start blogging
+
+I started blogging for 2 reasons:
+
+1. I have a lot of life experience in these years, but I never have the opportunity to write them down. I need a place to record my life.
+2. I need a place to record and share my experience, thoughts, notes in Software Engineering. The blog will become my notebook for the books I've read, the projects I've done and the lessons I've learned.
+
+I basically fork the template from [Hux's blog](https://github.com/Huxpro/huxpro.github.io). Credit  to him for the great template.
