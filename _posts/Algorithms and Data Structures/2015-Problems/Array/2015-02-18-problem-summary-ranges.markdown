@@ -28,7 +28,20 @@ Input: [0,2,3,4,6,8,9]
 Output: ["0","2->4","6","8->9"]
 ```
 
-## Solution
+## Analysis
+
+This problem has two subproblems. 
+- We need to list all the ranges from the array. 
+- For each range, we need to find its start element and its end element.
+
+This often means two loops can be used to solve the problem.
+The outer loop is used to traverse the array. At each iteration, an index should be pointed to the start of the current range.
+The inner loop is used to find the end of the current range.
+At the end of each iteration, add the current range to the result list.
+
+## Code
+
+Here is a sample solution.
 
 ```java
 class Solution {
@@ -51,3 +64,7 @@ class Solution {
     }
 }
 ```
+
+## Performance
+
+The outer loop traverses each range in the array. The inner loop traverses each element in a range. So each element in the array is visited once. Therefore, the overall performance of the solution is O(n). No extra memory space is used in the solution.

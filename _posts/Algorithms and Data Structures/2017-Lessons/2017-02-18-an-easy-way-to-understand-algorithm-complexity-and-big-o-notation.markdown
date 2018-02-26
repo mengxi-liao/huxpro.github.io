@@ -12,11 +12,11 @@ tags:
     - Algorithm Complexity
 ---
 
-Big O notation is the most widely used method which describes algorithm complexity – the execution time required or the space used in memory or in disk by an algorithm. Often in exams or interviews, you will be asked some questions about algorithm complexity in the following form. For an algorithm that uses a data structure of size n, what is the runtime complexity or space complexity of the algorithm? The answer to such questions often uses big O notations to describe the algorithm complexity, such as `O(1)`, `O(n)`, `O(n^2)` or `O(log(n))`.
+Big O notation is the most widely used method which describes algorithm complexity – the execution time required or the space used in memory or disk by an algorithm. Often in exams or interviews, you will be asked some questions about algorithm complexity in the following form. For an algorithm that uses a data structure of size n, what is the runtime complexity or space complexity of the algorithm? The answer to such questions often uses big O notations to describe the algorithm complexity, such as `O(1)`, `O(n)`, `O(n^2)` or `O(log(n))`.
 
 # Big O for time complexity
 
-Here we don’t want to discuss big O in a mathematical way. Basically, when analyzing the time complexity for an algorithm, big O notation is used to describe the rough estimate of the number of “steps” to complete the algorithm. Let’s take the following example:
+Here we don’t want to discuss big O mathematically. When analyzing the time complexity of an algorithm, big O notation is used to describe the rough estimate of the number of “steps” to complete the algorithm. Let’s take the following example:
 
 ```java
 void fun(int n) {
@@ -38,17 +38,17 @@ void fun(int n) {
 }
 ```
 
-Here let’s assume that doSomething() takes C steps to complete. The whole `fun(n)` method has 4 parts. What is the time complexity of each part for different parameters `n`?
+Here let’s assume that doSomething() takes C steps to complete. The whole `fun(n)` method has four parts. What is the time complexity of each part for different parameters `n`?
 
 For part1, it does `doSomething()` so it takes constant `C` steps. Here `C` is independent of the parameter `n`. When the time complexity is independent of the parameter, we use `O(1)` to mark it.
 
 For part2, it does `doSomething` `n` times. Each time it takes `C` steps. So in total, it takes `C x n` steps to complete part2. Then as described above, we use `O(1)` to complete the `C` steps. Then for `C x n`, the complexity becomes `n x O(1)`. Here, an important rule is that `a x O(n)` equals `O(a x n)`. In such case, `n x O(1) = O(n)`. So the time complexity of part2 is `O(n)`.
 
-For part3, it has two loops. The inner loop is exactly like part2. The outer loop does part2 `n` times again so the time complexity for part3 is `n x O(n)` which is `O(n^2)`.
+For part3, it has two loops. The inner loop is exactly like part2. The outer loop does part2 `n` times again, so the time complexity for part3 is `n x O(n)` which is `O(n^2)`.
 
-For part4, it takes exactly 1 step to return. So the time complexity is `O(1)`.
+For part4, it takes precisely 1 step to return. So the time complexity is `O(1)`.
 
-Then what is the total time complexity of the whole `fun(n)`? It is easy, we just need to add up the time complexity of all the 4 parts:
+Then what is the total time complexity of the whole `fun(n)`? It is easy; we just need to add up the time complexity of all the four parts:
 
 ```
 O(1) + O(n) + O(n^2) + O(1)
@@ -91,6 +91,6 @@ When comparing different algorithms, we often say the one with a “smaller” b
 
 # Big O for space complexity
 
-It is easier to understand using big O to estimate space complexity as it is more concrete. For example, in an algorithm, we need to create an array of size `n` to store the temporary results before getting the final result. If we assume that the size of the element in the array is a constant `C` which is independent to `n`, the space complexity for using the array is `Cn` which is `O(n) x O(C) = O(n) x O(1) = O(n)`.
+It is easier to understand using big O to estimate space complexity as it is more concrete. For example, in an algorithm, we need to create an array of size `n` to store the temporary results before getting the final result. If we assume that the size of the element in the array is a constant `C` which is independent of `n`, the space complexity of using the array is `Cn` which is `O(n) x O(C) = O(n) x O(1) = O(n)`.
 
 When comparing different algorithms, we often compare how much “extra” space complexity is needed to solve the problem. For example, as an algorithm that needs an extra array of size `n` is not as good as the one which only needs two variables, `O(1)` space complexity is more efficient than `O(n)`.
