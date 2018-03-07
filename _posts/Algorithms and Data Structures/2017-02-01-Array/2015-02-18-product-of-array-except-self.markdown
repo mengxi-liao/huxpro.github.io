@@ -24,7 +24,7 @@ For example, given `[1,2,3,4]`, return `[24,12,8,6]`.
 
 Could you solve it with constant space complexity? (Note: The output array does not count as extra space for space complexity analysis.)
 
-## Analysis
+## Solution
 
 #### The wrong approach
 
@@ -35,6 +35,7 @@ This solution won't work if there's `0` in the array.
 #### Brutal force
 Another idea is to, for each `nums[i]`, calculate the product of the other elements. This brutal force solution needs to traverse all the other elements for each element, so its time complexity is `O(n^2)`. And `O(n)` extra space as a new array is needed to store the result.
 
+#### Remove duplicate operations
 From the brutal force algorithm, you may notice there are duplicate operations.
 
 Example:

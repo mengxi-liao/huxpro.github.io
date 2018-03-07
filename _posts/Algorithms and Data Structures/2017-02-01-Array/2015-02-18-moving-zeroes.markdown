@@ -23,11 +23,11 @@ For example, given `nums = [0, 1, 0, 3, 12]`, after calling your function, nums 
 2. Minimize the total number of operations.
 
 
-## Analysis
+## Solution
 
 A solution could be using an index `i` to traverse the array, and for each iteration, if `nums[i]` is not zero, add the element to the end of result array. Mark the end of the result array as `tail`. As `tail` is always smaller than `i`, the original array could be used as the result array so the algorithm could be done in-place.
 
-## Code
+#### Code
 
 Here is a sample solution.
 

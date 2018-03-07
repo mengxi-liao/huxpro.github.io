@@ -28,7 +28,7 @@ Input: [0,2,3,4,6,8,9]
 Output: ["0","2->4","6","8->9"]
 ```
 
-## Analysis
+## Solution
 
 This problem has two subproblems. 
 - We need to list all the ranges from the array. 
@@ -39,7 +39,7 @@ The outer loop is used to traverse the array. At each iteration, an index should
 The inner loop is used to find the end of the current range.
 At the end of each iteration, add the current range to the result list.
 
-## Code
+#### Code
 
 Here is a sample solution.
 
