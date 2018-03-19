@@ -10,7 +10,7 @@ tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Tree
-    - Breath First Search
+    - Breadth First Search
 ---
 
 ## Question
@@ -38,7 +38,7 @@ return its level order traversal as:
 
 ## Solution
 
-**Breath First Search (BFS)** can be used to solve the problem.
+**Breadth First Search (BFS)** can be used to solve the problem.
 
 #### Code
 

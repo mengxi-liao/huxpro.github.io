@@ -10,7 +10,7 @@ tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Tree
-    - Breath First Search
+    - Depth First Search
 ---
 
 ## Question

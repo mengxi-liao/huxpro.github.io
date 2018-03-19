@@ -9,7 +9,7 @@ tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
-    - Breath First Search
+    - Breadth First Search
 ---
 
 ## Question
@@ -44,7 +44,7 @@ In this problem, we could construct a directed graph based on the wordList.
 
 Then the problem can be translated to: Given the graph, find the length of the shortest path from `beginWord` to `endWord`.
 
-Finding the shortest path can be resolved by the **Breath First Search (BFS)** algorithm. However, to find the length of the shortest path, we need to modify the standard BFS slightly. Please check the comment in the code for details.
+Finding the shortest path can be resolved by the **Breadth First Search (BFS)** algorithm. However, to find the length of the shortest path, we need to modify the standard BFS slightly. Please check the comment in the code for details.
 
 #### Get Adjacent Words of a Node
 
