@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: Binary Tree Zigzag Level Order Traversal"
+title:      "Problem: Binary Tree Zigzag Order Level Traversal"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
