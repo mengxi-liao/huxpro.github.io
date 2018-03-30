@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "An Easy Way to Understand Algorithm Complexity and Big O Notation"
+title:      "Implement a Trie"
 date:       2017-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"

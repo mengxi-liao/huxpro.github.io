@@ -1,0 +1,155 @@
+---
+layout:     post
+title:      "Problem: LRU Cache"
+date:       2015-02-18 00:00:00
+author:     "Marcy"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - Coding Interview
+    - Coding Practice
+    - Algorithms and Data Structures
+    - Linked List
+---
+
+## Question
+
+Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: `get` and `put`.
+
+- `get(key)` - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+- `put(key, value)` - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
+
+**Follow up:**
+Could you do both operations in `O(1)` time complexity?
+
+**Example:**
+```
+LRUCache cache = new LRUCache( 2 /* capacity */ );
+
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1);       // returns 1
+cache.put(3, 3);    // evicts key 2
+cache.get(2);       // returns -1 (not found)
+cache.put(4, 4);    // evicts key 1
+cache.get(1);       // returns -1 (not found)
+cache.get(3);       // returns 3
+cache.get(4);       // returns 4
+```
+
+## Recursive Solution
+TODO
+
+#### Code
+```java
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if(head == null || head.next == null) return head;
+        ListNode n = head.next;
+        head.next = head.next.next;
+        n.next = head;
+        
+        head.next = swapPairs(head.next);
+        return n;
+    }
+}
+```
+
+#### Performance
+TODO
+
+## Iterative Solution
+TODO
+
+#### Code
+```java
+class LRUCache {
+    // double linked list
+    class Node {
+        // we need the key here
+        // because when we remove the node from a list we
+        // need to remove it from the hash table as well
+        int key, value;
+        Node prev;
+        Node next;
+        public Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+    
+    Node head;
+    Node tail;    
+    int capacity;
+    Map<Integer, Node> map;
+    
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        
+        map = new HashMap<Integer, Node>();
+        // dummy nodes could avoid a lot of trouble
+        head = new Node(0, 0);
+        tail = new Node(0, 0);
+
+        head.next = tail;
+        tail.prev = head;
+        tail.next = null;
+        head.prev = null;
+    }
+    
+    public int get(int key) {
+        if (!map.containsKey(key)) {
+            return -1;
+        }
+        
+        Node node = map.get(key);
+        updateToHead(node);
+        return node.value;
+    }
+    
+    public void put(int key, int value) {
+        if (!map.containsKey(key)) {
+            Node node = new Node(key, value);
+            map.put(key, node);
+            if (map.keySet().size() > capacity) {
+                Node lastNode = tail.prev;
+                map.remove(lastNode.key);
+                deleteNode(lastNode);
+            }
+            addToHead(node);
+            
+        } else {
+            map.get(key).value = value;
+            updateToHead(map.get(key));
+        }
+    }
+    
+    private void updateToHead(Node node) {
+        deleteNode(node);
+        addToHead(node);
+    }
+    
+    private void deleteNode(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+    
+    private void addToHead(Node node) {
+        Node firstNode = head.next;
+        head.next = node;
+        node.next = firstNode;
+        node.prev = head;
+        firstNode.prev = node;
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+```
+
+#### Performance
+TODO
