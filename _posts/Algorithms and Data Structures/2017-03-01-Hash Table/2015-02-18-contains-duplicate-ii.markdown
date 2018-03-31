@@ -11,6 +11,7 @@ tags:
     - Algorithms and Data Structures
     - Hash Table
     - Two Pointers
+    - Easy
 ---
 
 ## Question

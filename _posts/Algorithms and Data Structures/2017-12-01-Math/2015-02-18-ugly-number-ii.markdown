@@ -10,6 +10,7 @@ tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Math
+    - Medium
 ---
 
 ## Question

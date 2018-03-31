@@ -11,6 +11,7 @@ tags:
     - Algorithms and Data Structures
     - Heap
     - Divide and Conquer
+    - Medium
 ---
 
 ## Question

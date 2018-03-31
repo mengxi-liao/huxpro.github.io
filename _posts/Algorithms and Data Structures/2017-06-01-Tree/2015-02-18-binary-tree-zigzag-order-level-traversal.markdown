@@ -11,6 +11,7 @@ tags:
     - Algorithms and Data Structures
     - Tree
     - Breadth First Search
+    - Medium
 ---
 
 ## Question

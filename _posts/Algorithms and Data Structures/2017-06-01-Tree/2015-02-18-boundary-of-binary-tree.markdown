@@ -11,6 +11,7 @@ tags:
     - Algorithms and Data Structures
     - Tree
     - Depth First Search
+    - Medium
 ---
 
 ## Question

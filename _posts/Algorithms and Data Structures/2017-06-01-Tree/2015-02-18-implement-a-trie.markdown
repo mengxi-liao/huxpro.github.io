@@ -10,6 +10,7 @@ tags:
     - Coding Lesson
     - Algorithms and Data Structures
     - Trie
+    - Medium
 ---
 
 # Solution

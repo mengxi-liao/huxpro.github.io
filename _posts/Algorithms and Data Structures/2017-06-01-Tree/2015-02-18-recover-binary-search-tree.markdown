@@ -12,6 +12,7 @@ tags:
     - Depth First Search
     - Tree
     - Binary Search Tree
+    - Hard
 ---
 
 ## Question

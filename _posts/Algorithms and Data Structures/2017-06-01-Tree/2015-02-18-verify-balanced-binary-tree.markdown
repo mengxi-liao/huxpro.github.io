@@ -12,6 +12,7 @@ tags:
     - Tree
     - Balanced Binary Tree
     - Depth First Search
+    - Easy
 ---
 
 ## Question

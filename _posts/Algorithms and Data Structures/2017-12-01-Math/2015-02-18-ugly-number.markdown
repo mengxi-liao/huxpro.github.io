@@ -10,6 +10,7 @@ tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Math
+    - Easy
 ---
 
 ## Question
@@ -37,7 +38,7 @@ class Solution {
             else if(num % 5 == 0) num /=5;
             else return false;
         }
-        
+
         return true;
     }
 }

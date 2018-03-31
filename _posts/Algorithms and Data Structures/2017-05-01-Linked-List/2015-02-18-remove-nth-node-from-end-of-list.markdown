@@ -11,6 +11,7 @@ tags:
     - Algorithms and Data Structures
     - Linked List
     - Two Pointers
+    - Medium
 ---
 
 ## Question

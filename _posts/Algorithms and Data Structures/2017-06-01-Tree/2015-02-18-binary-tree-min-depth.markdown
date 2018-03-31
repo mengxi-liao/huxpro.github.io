@@ -12,6 +12,7 @@ tags:
     - Tree
     - Depth First Search
     - Breadth First Search
+    - Easy
 ---
 
 ## Question

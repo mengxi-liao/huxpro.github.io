@@ -11,6 +11,7 @@ tags:
     - Algorithms and Data Structures
     - Tree
     - Binary Search Tree
+    - Hard
 ---
 
 ## Question

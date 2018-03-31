@@ -11,6 +11,7 @@ tags:
     - Algorithms and Data Structures
     - Array
     - Two Pointers
+    - Hard
 ---
 
 ## Question

@@ -10,19 +10,20 @@ tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Binary Search
+    - Medium
 ---
 
 ## Question
 
-A peak element is an element that is greater than its neighbors.
+Given an array of integers sorted in ascending order, find the starting and ending position of a given target value.
 
-Given an input array where `num[i] ≠ num[i+1]`, find a peak element and return its index.
+Your algorithm's runtime complexity must be in the order of O(log n).
 
-The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
+If the target is not found in the array, return `[-1, -1]`.
 
-You may imagine that `num[-1] = num[n] = -∞`.
-
-For example, in array `[1, 2, 3, 1]`, 3 is a peak element and your function should return the index number 2.
+For example,
+Given `[5, 7, 7, 8, 8, 10]` and target value 8,
+return `[3, 4]`.
 
 ## Solution
 TODO
@@ -30,21 +31,27 @@ TODO
 #### Code
 ```java
 class Solution {
-    public int findPeakElement(int[] nums) {
+    public int[] searchRange(int[] nums, int target) {
+        int idx = findFirstEqualOrGreater(nums, target);
+        if(idx == nums.length || nums[idx] != target) return new int[] {-1, -1};
+        int idx2 = findFirstEqualOrGreater(nums, target+1) - 1;
+        return new int[] {idx, idx2};
+    }
+    
+    private int findFirstEqualOrGreater(int[] nums, int target) {
         int l = 0;
         int r = nums.length-1;
-        while(l<r) {
-            int m = l+(r-l)/2;
-            if(nums[m] < nums[m+1]) {
+        while(l<=r) {
+            int m = (l + r) / 2;
+            if(nums[m] < target) {
                 l = m+1;
             }
             else {
-                r = m;
+                r = m-1;
             }
         }
         
         return l;
-        
     }
 }
 ```
