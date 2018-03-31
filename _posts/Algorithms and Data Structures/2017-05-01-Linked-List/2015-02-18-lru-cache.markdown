@@ -37,28 +37,7 @@ cache.get(3);       // returns 3
 cache.get(4);       // returns 4
 ```
 
-## Recursive Solution
-TODO
-
-#### Code
-```java
-class Solution {
-    public ListNode swapPairs(ListNode head) {
-        if(head == null || head.next == null) return head;
-        ListNode n = head.next;
-        head.next = head.next.next;
-        n.next = head;
-        
-        head.next = swapPairs(head.next);
-        return n;
-    }
-}
-```
-
-#### Performance
-TODO
-
-## Iterative Solution
+## Solution
 TODO
 
 #### Code
@@ -79,7 +58,7 @@ class LRUCache {
     }
     
     Node head;
-    Node tail;    
+    Node tail;
     int capacity;
     Map<Integer, Node> map;
     

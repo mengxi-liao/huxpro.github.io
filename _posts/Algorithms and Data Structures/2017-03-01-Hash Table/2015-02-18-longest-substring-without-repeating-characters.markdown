@@ -10,6 +10,7 @@ tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Hash Table
+    - Two Pointers
 ---
 
 ## Question
@@ -39,7 +40,7 @@ class Solution {
             set.add(c);
             max = Math.max(max, set.size());
         }
-        
+
         return max;
     }
 }
