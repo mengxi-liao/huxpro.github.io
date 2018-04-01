@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: Valid Anagram"
+title:      "Problem: Find All Anagrams in a String"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"

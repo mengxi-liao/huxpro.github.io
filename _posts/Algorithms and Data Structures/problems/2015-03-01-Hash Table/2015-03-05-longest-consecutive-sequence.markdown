@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: Contains Duplicate II"
+title:      "Problem: Longest Consecutive Sequence"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
@@ -10,7 +10,7 @@ tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Hash Table
-    - Medium
+    - Hard
 ---
 
 ## Question

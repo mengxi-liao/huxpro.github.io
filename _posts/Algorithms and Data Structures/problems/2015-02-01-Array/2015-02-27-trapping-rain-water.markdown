@@ -62,8 +62,6 @@ class Solution {
         return water;
     }
 }
-
-
 ```
 
 ## Performance

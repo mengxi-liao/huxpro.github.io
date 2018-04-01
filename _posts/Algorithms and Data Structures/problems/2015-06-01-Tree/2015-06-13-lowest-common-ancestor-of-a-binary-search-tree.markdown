@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: Validate Binary Search Tree"
+title:      "Problem: Lowest Common Ancestor of a Binary Search Trees"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
