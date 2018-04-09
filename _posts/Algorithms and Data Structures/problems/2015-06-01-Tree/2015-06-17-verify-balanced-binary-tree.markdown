@@ -14,6 +14,7 @@ algnote-tags:
     - Balanced Binary Tree
     - Depth First Search
     - Easy
+    - Binary Tree
 ---
 
 ## Question

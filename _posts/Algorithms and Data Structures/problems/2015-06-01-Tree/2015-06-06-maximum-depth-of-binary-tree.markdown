@@ -12,6 +12,7 @@ algnote-tags:
     - Algorithms and Data Structures
     - Tree
     - Depth First Search
+    - Binary Tree
     - Easy
 ---
 

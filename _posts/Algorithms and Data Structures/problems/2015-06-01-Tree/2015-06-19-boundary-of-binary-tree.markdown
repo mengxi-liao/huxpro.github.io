@@ -13,6 +13,7 @@ algnote-tags:
     - Tree
     - Depth First Search
     - Medium
+    - Binary Tree
 ---
 
 ## Question

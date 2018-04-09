@@ -13,6 +13,7 @@ algnote-tags:
     - Tree
     - Breadth First Search
     - Medium
+    - Binary Tree
 ---
 
 ## Question

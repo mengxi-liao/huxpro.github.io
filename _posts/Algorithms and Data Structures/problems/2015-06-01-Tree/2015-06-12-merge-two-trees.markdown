@@ -11,6 +11,7 @@ algnote-tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Tree
+    - Binary Tree
     - Medium
 ---
 

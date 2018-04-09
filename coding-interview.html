@@ -24,6 +24,7 @@ header-img: "img/tag-bg.jpg"
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
 			<div id='tag_cloud' class="tags">
+				<a rel="30" href="#">All</a>
 				<a rel="20" href="#Coding Lesson">Coding Lesson</a>
 				<a rel="20" href="#Coding Practice">Coding Practice</a>
 				<a rel="10" href="#Array">Array</a>
@@ -31,6 +32,7 @@ header-img: "img/tag-bg.jpg"
 				<a rel="10" href="#Linked List">Linked List</a>
 				<a rel="10" href="#Tree">Tree</a>
 				<a rel="10" href="#Binary Tree">Binary Tree</a>
+				<a rel="10" href="#Binary Search Tree">Binary Search Tree</a>
 				<a rel="10" href="#Stack">Stack</a>
 				<a rel="10" href="#Heap">Heap</a>
 				<a rel="10" href="#Binary Search">Binary Search</a>
@@ -82,6 +84,8 @@ function refresh() {
 		$(".posts").hide();
 		$(".posts[data-tags*='" + hash + "']").show();
 	}
+	else
+		$(".posts").show();
 }
 
 refresh();
