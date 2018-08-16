@@ -25,7 +25,7 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 ```
 
 ## Solution
-TODO
+The solution is similar to 3 sum. The difference is we need to have a `closest` variable to mark the current sum that is closest to `target`.
 
 #### Code
 ```java
@@ -57,4 +57,4 @@ class Solution {
 ```
 
 #### Performance
-TODO
+Same to 3 sum, the time complexity is `O(n)`. The space complexity is `O(1)`

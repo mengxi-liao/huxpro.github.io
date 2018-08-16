@@ -32,7 +32,12 @@ A solution set is:
 ```
 
 ## Solution
-TODO
+
+The idea is to sort the input array `nums` and then run through all indices of a possible first element `nums[first]` of a triplet. For each possible first element, the problem becomes finding two sums in the sorted array from `first+1` to `nums.length-1`. 
+
+To find 2 sums in a sorted array, we could use a bi-dementioanl search. Set two indecies `start` and `end` for the start and end of the search range and compare `sum` of `nums[start] + nums[end]` and `0 - nums[first]`. When `sum == 0 - nums[first]`, we know a valid 2 sum is found. When `sum < 0 - nums[first]`, increase `sum` by moving `start` forward. When `sum > 0 - nums[first]`, decrease `sum` by moving `end` backwards.
+
+When moving `first`, `start` and `end`, to avoid duplicate results, they need to be moved to the next different element in `nums`.
 
 #### Code
 ```java
@@ -64,16 +69,22 @@ class Solution {
                 pair.add(nums[l]);
                 pair.add(nums[r]);
                 twoSums.add(pair);
+                # find the next different nums[l]
                 l++;
                 while(l<r && nums[l] == nums[l-1]) l++;
+                # find the next different nums[r]
                 r--;
                 while(l<r && nums[r] == nums[r+1]) r--;
             }
             else if(sum > target) {
+                # find the next different nums[r]
                 r--;
+                while(l<r && nums[r] == nums[r+1]) r--;
             }
             else {
+                # find the next different nums[l]
                 l++;
+                while(l<r && nums[l] == nums[l-1]) l++;
             }
         }
         
@@ -83,10 +94,14 @@ class Solution {
 ```
 
 #### Performance
-TODO
+
+Sorting the array will use `O(logn)` time. And to find the three sums, the outer loop for iterating `first` takes `O(n)`. The inner loop for finding all the two sums takes `O(n)`. So overall it takes `O(logn) + O(n) * O(n) = O(n^2)`.
+
+For space complexity, it depends on how many triples can be found in `nums`. 
 
 ## K Sum solution
-TODO
+
+The above solution could be easily extended to finding k sum. The key idea is to use recursion to reduce the k sum problem to k-1 sum. And when it is reduced to 2 sum, use the bi-dimensional search method to get all the two sums.
 
 #### Code
 ```java
@@ -144,4 +159,5 @@ class Solution {
 ```
 
 #### Performance
-TODO
+
+Similar to 3 sum, the time complexity will be O(n^k-1). And space complexity depends on how many k sums can be found in `nums`

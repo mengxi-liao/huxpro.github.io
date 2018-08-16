@@ -27,7 +27,7 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return `[0, 1]`.
 
 ## Solution
-TODO
+The idea is to use a hash map `map` to store `target - nums[i]` when iterating `nums`. Once a `num[j]` is found as an existing key in `map`, we know `nums[j] + map[nums[j]] == target`.
 
 #### Code
 ```java
@@ -46,4 +46,4 @@ class Solution {
 ```
 
 ## Performance
-TODO
+The solution iterates each element in `nums` once, so the time complexity is `O(n)`. The hashmap will have at most `n` entries, so the space complexity is `O(n)`.
