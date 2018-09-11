@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: Subset"
+title:      "Problem: Subset II"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
@@ -55,7 +55,7 @@ If nums = `[1,2,2]`, a solution is:
 ```
 
 ## Solution
-TODO
+TODO 
 
 #### Code
 ```java

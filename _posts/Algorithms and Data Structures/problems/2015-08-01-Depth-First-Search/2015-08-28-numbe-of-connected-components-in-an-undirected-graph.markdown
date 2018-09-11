@@ -27,6 +27,12 @@ Given `n` nodes labeled from 0 to `n - 1` and a list of undirected edges (each e
 ```
 Given `n = 5` and `edges = [[0, 1], [1, 2], [3, 4]]`, return `2`.
 
+[0, 1] [1,2] [2,0]
+0       0    0
+
+[0,4] [1,2] [2,1] [4,2]
+ 0     1     1     1 
+
 **Example 2:**
 
 ```
@@ -39,7 +45,65 @@ Given `n = 5` and `edges = [[0, 1], [1, 2], [2, 3], [3, 4]]`, return `1`.
 **Note:**
 You can assume that no duplicate edges will appear in `edges`. Since all edges are undirected, `[0, 1]` is the same as `[1, 0]` and thus will not appear together in `edges`.
 
-## Solution
+## Solution 1
+TODO
+
+#### Code
+```java
+class Solution {
+    class Node {
+        boolean visited = false;
+        List<Node> nodes = new ArrayList();
+        int label;
+    }
+    
+    public int countComponents(int n, int[][] edges) {        
+        Map<Integer, Node> nodesMap = new HashMap();
+        
+        for(int i=0; i<edges.length; i++) {
+            int[] e = edges[i];
+            Node n1 = createOrFindNode(e[0], nodesMap);
+            Node n2 = createOrFindNode(e[1], nodesMap);            
+            n1.nodes.add(n2);
+            n2.nodes.add(n1);
+        }
+        
+        for(Node node: nodesMap.values()) {
+            if(node.visited) n--;
+            else dfs(node);
+        }
+        
+        return n;
+    }
+    
+    private Node createOrFindNode(int label, Map<Integer, Node> nodesMap) {
+        Node n = null;
+        if(nodesMap.containsKey(label))
+            n = nodesMap.get(label);
+        else {
+            n = new Node();
+            n.label = label;
+            nodesMap.put(label, n);
+        }
+        
+        return n;
+    }
+    
+    private void dfs(Node n) {
+        if(n.visited) return;
+        n.visited = true;
+        for(Node child: n.nodes) {
+            dfs(child);
+        }
+    }
+}
+
+```
+
+#### Performance
+TODO
+
+## Solution 2
 TODO
 
 #### Code
@@ -77,5 +141,5 @@ class Solution {
 
 ```
 
-## Performance
+#### Performance
 TODO

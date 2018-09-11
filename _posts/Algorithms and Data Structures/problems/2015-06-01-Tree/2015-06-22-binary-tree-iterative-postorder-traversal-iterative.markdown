@@ -64,6 +64,8 @@ stack:[0]    current: null  return
 
 ```
 
+You could see the solution as a an inorder traverse but visit the right tree first. And when collecting results, append that to the head of the list.
+
 #### Code
 
 Here is a sample solution.
