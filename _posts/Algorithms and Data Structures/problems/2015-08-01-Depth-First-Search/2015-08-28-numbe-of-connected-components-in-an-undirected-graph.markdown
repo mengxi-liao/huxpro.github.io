@@ -11,6 +11,7 @@ algnote-tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Depth First Search
+    - Union Find
     - Medium
 ---
 
@@ -46,7 +47,8 @@ Given `n = 5` and `edges = [[0, 1], [1, 2], [2, 3], [3, 4]]`, return `1`.
 You can assume that no duplicate edges will appear in `edges`. Since all edges are undirected, `[0, 1]` is the same as `[1, 0]` and thus will not appear together in `edges`.
 
 ## Solution 1
-TODO
+
+Use DFS.
 
 #### Code
 ```java
@@ -101,18 +103,20 @@ class Solution {
 ```
 
 #### Performance
-TODO
+
+Every node will be at most visited once. There are `edges.length` nodes, `e`. So the overall performance is `O(e)`.
 
 ## Solution 2
-TODO
+
+Union Find
 
 #### Code
 ```java
 class Solution {
     public int countComponents(int n, int[][] edges) {
         int[] roots = new int[n];
-        for(int i=0; i<roots.length; i++) {
-            roots[i] = i;
+        for(int node=0; node<n; node++) {
+            roots[node] = node;
         }
         
         int count = n;
@@ -129,13 +133,17 @@ class Solution {
         return count;
     }
     
-    private int findRoot(int[] roots, int idx) {
-        while(roots[idx] != idx) {
-            roots[idx] = roots[roots[idx]];
-            idx = roots[idx];
+    private int findRoot(int[] roots, int node) {
+        //find the root of node
+        int finder = node;
+        while(roots[finder] != finder) {
+            finder = roots[finder];
         }
         
-        return idx;
+        //update the roots map to cache the updated root of node
+        roots[node] = finder;
+        
+        return finder;
     }
 }
 

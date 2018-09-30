@@ -53,7 +53,9 @@ All possible pairs are returned from the sequence:
 ```
 
 ## Solution
-TODO
+Basic idea: Use min heap to keep track on next minimum pair sum, and we only need to maintain `K` possible candidates in the data structure.
+
+Some observations: For every numbers in `nums1`, its best partner(yields min sum) always strats from `nums2[0]` since arrays are all sorted; And for a specific number in `nums1`, its next candidate sould be `[this specific number] + nums2[current_associated_index + 1]`, unless out of boundary;)
 
 #### Code
 ```java
@@ -76,4 +78,4 @@ class Solution {
 ```
 
 ## Performance
-TODO
+O(kLog(k))

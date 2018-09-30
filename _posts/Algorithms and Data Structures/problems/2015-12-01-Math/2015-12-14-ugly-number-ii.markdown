@@ -23,38 +23,40 @@ Ugly numbers are positive numbers whose prime factors only include `2, 3, 5`. Fo
 Note that `1` is typically treated as an ugly number, and n **does not exceed 1690**.
 
 ## Solution
-TODO
-
+We have an array k of first n ugly number. We only know, at the beginning, the first one, which is `1`. Then
+`k[1] = min( k[0]x2, k[0]x3, k[0]x5)`. The answer is `k[0]x2`. So we move 2's pointer to 1. Then we test:
+`k[2] = min( k[1]x2, k[0]x3, k[0]x5)`. And so on.
+Be careful about the cases such as `6`, in which we need to forward both pointers of 2 and 3.
 #### Code
 ```java
 public class Solution {
   public int nthUglyNumber(int n) {
     int [] uglyList = new int[n];
-    
+
     uglyList[0] = 1;
     int index2 = 0;
     int index3 = 0;
     int index5 = 0;
-    
+
     for(int i=1; i<uglyList.length; i++) {
       int nextUgly2 = uglyList[index2]*2;
       int nextUgly3 = uglyList[index3]*3;
       int nextUgly5 = uglyList[index5]*5;
-      
+
       uglyList[i] = Math.min(Math.min(nextUgly2, nextUgly3), nextUgly5);
-      
-      if(uglyList[i] == nextUgly2) 
+
+      if(uglyList[i] == nextUgly2)
         index2 ++;
-      if(uglyList[i] == nextUgly3) 
+      if(uglyList[i] == nextUgly3)
         index3 ++;
-      if(uglyList[i] == nextUgly5) 
-        index5 ++; 
+      if(uglyList[i] == nextUgly5)
+        index5 ++;
     }
-    
+
     return uglyList[n-1];
   }
 }
 ```
 
 ## Performance
-TODO
+O(n)

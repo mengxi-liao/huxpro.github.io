@@ -37,39 +37,33 @@ TODO
 
 #### Code
 ```java
-public class Solution {
+class Solution {
     public int myAtoi(String str) {
-        int index = 0, sign = 1, total = 0;
-        //1. Empty string
+        str = str.trim();
         if(str.length() == 0) return 0;
 
-        //2. Remove Spaces
-        while(str.charAt(index) == ' ' && index < str.length())
-            index ++;
-
-        //3. Handle signs
-        if(str.charAt(index) == '+' || str.charAt(index) == '-'){
-            sign = str.charAt(index) == '+' ? 1 : -1;
-            index ++;
+        int carry  = 1;
+        if(str.charAt(0) == '-') carry = -1;
+        int idx = 0;
+        if(str.charAt(0) == '-' || str.charAt(0) == '+') {
+            idx++;
         }
 
-        //4. Convert number and avoid overflow
-        while(index < str.length()){
-            int digit = str.charAt(index) - '0';
+        int result = 0;
+        while(idx < str.length()) {
+            char c = str.charAt(idx);
+            if(c < '0' || c > '9') return result;
 
-            // stop at the first non digit char
-            if(digit < 0 || digit > 9) break;
-
-            //check if total will be overflow after 10 times and add digit
-            if(Integer.MAX_VALUE/10 < total ||
-                Integer.MAX_VALUE/10 == total &&
-                Integer.MAX_VALUE %10 < digit)
-                return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-
-            total = 10 * total + digit;
-            index ++;
+            int v = carry * (c - '0');
+            if(result > Integer.MAX_VALUE/10 || 
+               result == Integer.MAX_VALUE/10 && v > 7) return Integer.MAX_VALUE;
+            if(result < Integer.MIN_VALUE/10 || 
+               result == Integer.MIN_VALUE/10 && v < -8) return Integer.MIN_VALUE;
+            result = result * 10 + v;
+            idx++;
         }
-        return total * sign;
+
+        return result;
     }
 }
 ```

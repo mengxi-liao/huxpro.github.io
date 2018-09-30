@@ -44,5 +44,24 @@ class Solution {
 }
 ```
 
+```java
+// The Sieve Of Eratosthenes
+class Solution {
+    public int countPrimes(int n) {
+        boolean[] isNotPrimes = new boolean[n];
+        int count = 0;
+        for(int i=2; i<n; i++) {
+            if(!isNotPrimes[i]) {
+                count++;
+                for(int j=2; i*j<n; j++) {
+                    isNotPrimes[i*j] = true;
+                }
+            }
+        }
+        return count;
+    }
+}
+```
+
 ## Performance
 TODO
