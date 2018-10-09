@@ -1,11 +1,12 @@
 ---
 layout:     post
-title:      "Problem: Search For a Range"
+title:      "Problem: Find First and Last Position of Element in Sorted Array"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures

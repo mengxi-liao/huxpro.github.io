@@ -1,0 +1,122 @@
+---
+layout:     post
+title:      "Problem: 01 Matrix"
+date:       2015-02-18 00:00:00
+author:     "Marcy"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+category: algnote
+algnote-tags:
+    - Coding Interview
+    - Coding Practice
+    - Algorithms and Data Structures
+    - Breadth First Search
+    - Medium
+---
+
+## Question
+
+Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.
+
+The distance between two adjacent cells is 1.
+
+Example 1: 
+
+Input:
+
+```
+0 0 0
+0 1 0
+0 0 0
+```
+
+Output:
+
+```
+0 0 0
+0 1 0
+0 0 0
+```
+
+Example 2: 
+
+Input:
+
+```
+0 0 0
+0 1 0
+1 1 1
+```
+
+Output:
+
+```
+0 0 0
+0 1 0
+1 2 1
+```
+
+Note:
+- The number of elements of the given matrix will not exceed 10,000.
+- There are at least one 0 in the given matrix.
+- The cells are adjacent in only four directions: up, down, left and right.
+
+## Solution
+
+Use multi-origin Breath First Search.
+
+#### Code
+
+Here is a sample solution.
+
+```java
+class Solution {
+    public int[][] updateMatrix(int[][] matrix) {
+        for(int i=0; i<matrix.length; i++) {
+            for(int j=0; j<matrix[0].length; j++) {
+                if(matrix[i][j] != 0) matrix[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        
+        Queue<int[]> q = new LinkedList();
+        for(int x=0; x<matrix.length; x++) {
+            for(int y=0; y<matrix[0].length; y++) {
+                if(matrix[x][y] != 0) continue;
+                q.add(new int[]{x, y});
+            }
+        }
+        
+        int curDistance = 0;
+        while(!q.isEmpty()) {
+            curDistance++;
+            int size = q.size();
+            for(int i=0; i<size; i++) {
+                int[] p = q.poll();
+                addPointToQIfNeeded(p[0]-1, p[1], matrix, q, curDistance);
+                addPointToQIfNeeded(p[0], p[1]-1, matrix, q, curDistance);
+                addPointToQIfNeeded(p[0]+1, p[1], matrix, q, curDistance);
+                addPointToQIfNeeded(p[0], p[1]+1, matrix, q, curDistance);
+            }
+        }
+        
+        return matrix;
+    }
+    
+    void addPointToQIfNeeded(int x, int y, int[][] matrix, Queue q, int curDistance) {
+        if(!isValid(matrix, x, y)) return;
+        if(matrix[x][y] == 0) return;
+        if(curDistance >= matrix[x][y]) return;
+        
+        matrix[x][y] = curDistance;
+        q.add(new int[]{x, y});
+    }
+    
+    boolean isValid(int[][] matrix, int x, int y) {
+        return x >= 0 && y >= 0 && x < matrix.length && y < matrix[0].length;
+    }
+}
+```
+
+## Performance
+
+O(n) and no extra space.

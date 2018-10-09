@@ -5,11 +5,13 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
     - Tree
+    - Binary Tree
     - Hard
 ---
 
@@ -61,6 +63,8 @@ stack:[1]    current: null  pop   go_left
 stack:[0]    current: null  return
 
 ```
+
+You could see the solution as a an inorder traverse but visit the right tree first. And when collecting results, append that to the head of the list.
 
 #### Code
 

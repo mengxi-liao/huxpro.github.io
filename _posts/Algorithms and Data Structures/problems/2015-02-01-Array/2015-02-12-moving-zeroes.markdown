@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -39,7 +40,7 @@ class Solution {
         for(int i=0; i<nums.length; i++) 
             if(nums[i] != 0) 
                 nums[tail++] = nums[i];
-        while(l<nums.length) 
+        while(tail<nums.length) 
             nums[tail++] = 0;
     }
 }

@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -42,26 +43,16 @@ TODO
 ```java
 class Solution {
     public int maxProfit(int[] prices) {
-        if(prices.length < 2) return 0;
-        int minIndex = 0;
-        int maxIndex = 0;
+        if(prices.length == 0) return 0;
+        int maxDiff = 0;
+        int curMin = prices[0];
         
-        int maxProfit = 0;
-        int sellIndex = 0;
-        int buyIndex = 0;
-        
-        for(int i=1; i<prices.length; i++) {
-            int profit = prices[i] - prices[minIndex];
-            if(profit > maxProfit) {
-                maxProfit = profit;
-                sellIndex = i;
-                buyIndex = minIndex;
-            }
-            else if(prices[i] < prices[minIndex]) {
-                minIndex = i;
-            }
+        for(int i=0; i<prices.length; i++) {
+            curMin = Math.min(curMin, prices[i]);
+            maxDiff = Math.max(maxDiff, prices[i]-curMin);
         }
-        return buyIndex;
+        
+        return maxDiff;
     }
 }
 ```

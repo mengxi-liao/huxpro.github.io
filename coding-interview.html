@@ -1,0 +1,96 @@
+---
+title: Prepare Code Interview
+layout: default
+description: The best web page to review coding interview questions
+header-img: "img/tag-bg.jpg"
+---
+
+<!-- Page Header -->
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading">
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <span class="subheading">{{ page.description }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+			<div id='tag_cloud' class="tags">
+				<a rel="30" href="#">All</a>
+				<a rel="20" href="#Coding Lesson">Coding Lesson</a>
+				<a rel="20" href="#Coding Practice">Coding Practice</a>
+				<a rel="10" href="#Array">Array</a>
+				<a rel="10" href="#Hash Table">Hash Table</a>
+				<a rel="10" href="#Linked List">Linked List</a>
+				<a rel="10" href="#Tree">Tree</a>
+				<a rel="10" href="#Binary Tree">Binary Tree</a>
+				<a rel="10" href="#Binary Search Tree">Binary Search Tree</a>
+				<a rel="10" href="#Stack">Stack</a>
+				<a rel="10" href="#Heap">Heap</a>
+				<a rel="10" href="#Binary Search">Binary Search</a>
+				<a rel="10" href="#Trie">Trie</a>
+				<a rel="10" href="#Sorting">Sorting</a>
+				<a rel="10" href="#Breadth First Search">Breadth First Search</a>
+				<a rel="10" href="#Depth First Search">Depth First Search</a>
+				<a rel="10" href="#Divide and Conquer">Divide and Conquer</a>
+				<a rel="10" href="#Dynamic Programming">Dynamic Programming</a>
+				<a rel="10" href="#Math">Math</a>
+			</div>
+
+			{% for post in site.posts %}
+			{% if.post.category == "algnote"%}
+			<div class="one-tag-list posts" data-title="{{ post.title }}" data-tags="{{post.algnote-tags | join: " , "}}" data-cate="{{post.category}}">
+				 <div class="post-preview">
+				    <a href="{{ post.url | prepend: site.baseurl }}">
+				        <h2 class="post-title">
+                            {{ post.title }}
+				        </h2>
+				        {% if post.subtitle %}
+				        <h3 class="post-subtitle">
+				            {{ post.subtitle }}
+				        </h3>
+				        {% endif %}
+				    </a>
+				    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+				</div>
+				<hr>
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<script>
+function getHash() {
+	var hashIndex = document.URL.indexOf('#');
+	if (hashIndex != -1) {
+		return document.URL.substr(hashIndex+ 1).replace(/\%20/g, " ");
+	}
+	return null;
+}
+
+function refresh() {
+	var hash = getHash();
+	if (hash != null && hash != "") {
+		$(".posts").hide();
+		$(".posts[data-tags*='" + hash + "']").show();
+	}
+	else
+		$(".posts").show();
+}
+
+refresh();
+
+$(window).on('hashchange', function(e){
+	refresh();
+});
+</script>

@@ -1,16 +1,18 @@
 ---
 layout:     post
-title:      "Problem: Convert Sorted Array to Height Balanced Binary Search Tree"
+title:      "Problem: Convert Sorted Array to Binary Search Tree"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
     - Tree
     - Binary Search Tree
+    - Binary Tree
     - Medium
 ---
 

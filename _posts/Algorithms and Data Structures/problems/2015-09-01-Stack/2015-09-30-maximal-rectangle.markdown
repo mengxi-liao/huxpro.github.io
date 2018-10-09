@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -35,41 +36,49 @@ TODO
 ```java
 class Solution {
     public int maximalRectangle(char[][] matrix) {
-        if(matrix.length == 0) return 0;
+        if(matrix.length == 0 || matrix[0].length == 0) return 0;
+        int[] row = new int[matrix[0].length];
         
-        int maxSize = 0;
-        int[] heights = new int[matrix[0].length];
+        int max = 0;
         for(int i=0; i<matrix.length; i++) {
-            for(int j=0; j<heights.length; j++) {
-                if(matrix[i][j] == '0') heights[j] = 0;
-                else heights[j]++;
+            for(int j=0; j<matrix[0].length; j++) {
+                if(matrix[i][j] == '0') {
+                    row[j] = 0;
+                }
+                else {
+                    row[j] ++;
+                }
             }
-            maxSize = Math.max(maxSize, rowMax(heights));
+            
+            max = Math.max(rowMax(row), max);
         }
-        return maxSize;
+                            
+        return max;
     }
-    
-    int rowMax(int[] heights) {
-        int[] stack = new int[heights.length];
-        int top = -1;
-        int maxArea = 0;
-        for(int i=0; i<heights.length; i++) {
-            while(top >= 0 && heights[stack[top]] >= heights[i]) {
-                int h = heights[stack[top--]];
-                int left = top>=0 ? stack[top]: -1;
-                
-                maxArea = Math.max(maxArea, h * (i - left - 1));
+                            
+    private int rowMax(int[] row) {
+        int max = 0;
+        Stack<Integer> s = new Stack();
+        
+        for(int i=0; i<row.length; i++) {
+            while(!s.isEmpty() && row[i] < row[s.peek()]) {
+                int h = row[s.pop()];
+                int l = s.isEmpty()? 0: s.peek()+1;
+                int r = i;
+                max = Math.max(h*(r-l), max);
             }
-            stack[++top] = i;
+            
+            s.push(i);
         }
         
-        while(top >= 0) {
-            int h = heights[stack[top--]];
-            int left = top>=0 ? stack[top]: -1;
-            maxArea = Math.max(maxArea, h * (heights.length - left - 1));
+        while(!s.isEmpty()) {
+            int h = row[s.pop()];
+            int r = row.length;
+            int l = s.isEmpty()? 0: s.peek()+1;
+            max = Math.max(h*(r-l), max);
         }
         
-        return maxArea;
+        return max;
     }
 }
 ```

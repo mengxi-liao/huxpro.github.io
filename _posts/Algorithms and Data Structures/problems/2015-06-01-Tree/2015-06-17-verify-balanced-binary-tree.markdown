@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -13,6 +14,7 @@ tags:
     - Balanced Binary Tree
     - Depth First Search
     - Easy
+    - Binary Tree
 ---
 
 ## Question

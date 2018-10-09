@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -43,49 +44,38 @@ TODO
 ```java
 class Solution {
     public boolean isMatch(String s, String p) {
-        List<String> patterns = new ArrayList();
-        char[] pc = p.toCharArray();
+        Set<Integer> idxs = new HashSet<>();
+        idxs.add(0);
+
         for(int i=0; i<p.length(); i++) {
-            char c = pc[i];
-            if(pc[i] != '*') {
-                patterns.add(c+"");
+            Set<Integer> idxsNew = new HashSet<>();
+            char c = p.charAt(i);
+            boolean multiple = false;
+            if(i < p.length()-1 && p.charAt(i+1) == '*') {
+                i++;
+                multiple = true;
             }
-            else {
-                int last = patterns.size()-1;
-                patterns.set(patterns.size()-1, patterns.get(last)+"*");
-            }
-        }
-        
-        Set<Integer>[] matchs = new Set[patterns.size()+1];
-        matchs[0] = new HashSet<Integer>();
-        matchs[0].add(-1);
-        
-        char[] sc = s.toCharArray();
-        for(int i=0; i<patterns.size(); i++) {
-            
-            // for matchs, i is previous, i+1 is current
-            if(matchs[i].isEmpty()) return false;
-            
-            matchs[i+1] = new HashSet();
-            String pat = patterns.get(i);
-            char c = pat.charAt(0);
-            for(Integer idx: matchs[i]) {
-                if(pat.length() != 2) {
-                    if(idx < s.length()-1 && (pat.equals(".") || sc[idx+1] == c)) {
-                        matchs[i+1].add(idx+1);
+
+            for(Integer index : idxs) {
+                if(!multiple) {
+                    if(c == '.' || index < s.length() && c == s.charAt(index)) {
+                        idxsNew.add(index + 1);
                     }
-                } else {
-                    matchs[i+1].add(idx);
-                    for(int j=idx+1; j<s.length() && (c == '.' || sc[j] == c); j++) {
-                        matchs[i+1].add(j);
+                }
+                else {
+                    idxsNew.add(index);
+                    for(int j = index+1; j <= s.length(); j++) {
+                        if(c != '.' && s.charAt(j-1) != c) break;
+                        idxsNew.add(j);
                     }
                 }
             }
-            
+
+            if(idxsNew.isEmpty()) return false;
+            idxs = idxsNew;
         }
-        
-        
-        return matchs[matchs.length-1].contains(s.length()-1);
+
+        return idxs.contains(s.length());
     }
 }
 ```

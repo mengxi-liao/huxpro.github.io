@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -32,22 +33,22 @@ class Solution {
     public int minDistance(String word1, String word2) {
         int n = word1.length();
         int m = word2.length();
-        
+
         int[][] distances = new int[n+1][m+1];
-        
+
         for(int i=0; i<n+1; i++) {
             distances[i][0] = i;
         }
         for(int i=0; i<m+1; i++) {
             distances[0][i] = i;
         }
-        
+
         for(int i=1; i<n+1; i++) {
             for(int j=1; j<m+1; j++) {
                 if(word1.charAt(i-1) == word2.charAt(j-1)) {
                     distances[i][j] = distances[i-1][j-1];
                 }
-                else { 
+                else {
                     int a = distances[i-1][j-1];
                     int b = distances[i][j-1];
                     int c = distances[i-1][j];
@@ -56,7 +57,7 @@ class Solution {
                 }
             }
         }
-        
+
         return distances[n][m];
     }
 }

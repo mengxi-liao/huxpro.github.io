@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -37,7 +38,7 @@ After reading the requirements, we should notice there are several cases:
 
 Here is a simple solution. Traverse the two versions at the same time. Every time we extract a part, `p1`, from `version1`, and extract a part2, `p2`, from `version2`. Then compare the two parts. If `p1==p2`, continue to compare the parts after. If `p1 > p2`, return `1`. If `p1 < p2`, return `-1`.
 
-How to handle the case when the two versions have a different number of parts? We could define the corresponding part in the short version as 0. For example, for the case of `1.2.3 vs 1.2`,  convert `1.2` to `1.2.0`. As `3>0`, return `1`.
+How to handle the case when the two versions have a different number of parts? We could define the corresponding part in the short version as 0. For the case of `1.2.3 vs 1.2`,  convert `1.2` to `1.2.0`. As `3>0`, return `1`.
 
 #### Code
 
@@ -70,8 +71,8 @@ class Solution {
 }
 ```
 
-Now we need to implement `compareParts`. We won't convert the parts to `int` as it may cause overflow. The trick here is to convert the two
-parts to have the same length. For example, `12 vs 1234` could be converted to `0012 vs 1234`.
+Now we need to implement `compareParts`. We won't convert the parts to `int` as it may cause overflow. The trick here is to make the two
+parts have the same length. For example, `12 vs 1234` could be converted to `0012 vs 1234`.
 
 ```java
 public int compareParts(StringBuilder v1, StringBuilder v2) {

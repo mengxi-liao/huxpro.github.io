@@ -5,7 +5,8 @@ date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
-tags:
+category: algnote
+algnote-tags:
     - Coding Interview
     - Coding Practice
     - Algorithms and Data Structures
@@ -26,7 +27,7 @@ You may assume that each input would have exactly one solution and you may not u
 **Output**: index1=1, index2=2
 
 ## Solution
-TODO
+To find 2 sums in a sorted array, we could use a bi-dementioanl search. Set two indecies `start` and `end` for the start and end of the search range and compare `sum` of `nums[start] + nums[end]` and `0 - nums[first]`. When `sum == 0 - nums[first]`, we know a valid 2 sum is found. When `sum < 0 - nums[first]`, increase `sum` by moving `start` forward. When `sum > 0 - nums[first]`, decrease `sum` by moving `end` backwards.
 
 #### Code
 ```java
@@ -52,4 +53,4 @@ class Solution {
 ```
 
 ## Performance
-TODO
+`O(n)` for both time and space complexity.
