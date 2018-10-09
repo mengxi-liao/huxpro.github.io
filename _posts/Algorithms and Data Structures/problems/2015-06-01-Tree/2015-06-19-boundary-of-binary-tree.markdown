@@ -110,7 +110,7 @@ class Solution {
     private void rightBound(TreeNode root, List<Integer> boundary) {
         if(root == null || root.left == null && root.right == null) return;
         if(root.right != null) rightBound(root.right, boundary);
-        else if(root.left != null) rightBound(root.left, boundary);    
+        else if(root.left != null) rightBound(root.left, boundary);
         boundary.add(root.val);
     }
 }

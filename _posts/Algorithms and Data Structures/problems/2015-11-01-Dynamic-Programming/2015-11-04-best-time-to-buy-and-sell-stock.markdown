@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: Minimum Path Sum"
+title:      "Problem: Best Time to Buy and Sell Stock"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"

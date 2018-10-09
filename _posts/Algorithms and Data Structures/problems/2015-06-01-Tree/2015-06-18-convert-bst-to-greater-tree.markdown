@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: kth Smallest in a Binary Search Tree"
+title:      "Problem: Convert BST to Greater Tree"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
