@@ -52,12 +52,15 @@ class Solution {
                 res.add(0, first);
             }
             result.addAll(sumResult);
+
+            // To reduce the duplicate, look for the last same element
+            // next i++ will move i to the next different element
             while(nums[i] == nums[i+1] && i<nums.length-2) i++;
         }
-        
+
         return result;
     }
-    
+
     public List<List<Integer>> twoSum(int start, int[] nums, int target) {
         List<List<Integer>> twoSums = new ArrayList<>();
         int l = start;
@@ -70,6 +73,8 @@ class Solution {
                 pair.add(nums[r]);
                 twoSums.add(pair);
                 # find the next different nums[l]
+
+                // look for the next different element
                 l++;
                 while(l<r && nums[l] == nums[l-1]) l++;
                 # find the next different nums[r]

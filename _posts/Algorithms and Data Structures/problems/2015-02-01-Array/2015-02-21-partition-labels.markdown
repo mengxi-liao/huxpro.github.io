@@ -45,29 +45,25 @@ Here is a sample solution.
 ```java
 class Solution {
     public List<Integer> partitionLabels(String S) {
+        List<Integer> list = new ArrayList();
         int[] ends = new int[26];
-        
         for(int i=0; i<S.length(); i++) {
-            char c = S.charAt(i);
-            ends[c-'a'] = i;
+            ends[S.charAt(i) - 'a'] = i;
         }
         
         int start = 0;
-        int end = ends[S.charAt(0)-'a'];
-        List<Integer> results = new ArrayList();
+        int end = -1;
         for(int i=0; i<S.length(); i++) {
-            if(i > end) {
-                results.add(end+1-start);
-                start = i;
-                end = ends[S.charAt(i)-'a'];
+            if(ends[S.charAt(i) - 'a'] > end) {
+                end = ends[S.charAt(i) - 'a'];
             }
-            else if(ends[S.charAt(i)-'a'] > end) {
-                end = ends[S.charAt(i)-'a'];
+            if(i == end){
+                list.add(end-start + 1);
+                start = i+1;
             }
         }
-        results.add(end+1-start);
         
-        return results;
+        return list;
     }
 }
 ```

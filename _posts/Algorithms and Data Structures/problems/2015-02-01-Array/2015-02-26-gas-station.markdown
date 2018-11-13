@@ -84,3 +84,42 @@ You may be interested in the proof of the second rule :)
 - Or if `gas(b) >= cost(b)`, we can travel from *b* to *c* directly. Similar to the case above, this problem can reduce to a problem with two stations *b’* and *a*, where `gas(b’) = gas(b) + gas(c)` and `cost(b’) = cost(b) + cost(c)`. Since `gas(a) < cost(a)`, `gas(b’)` must be greater than `cost(b’)`, so it’s solved too.
 - For problems with more stations, we can reduce them in a similar way. In fact, as seen above for the example of three stations, the problem of two stations can also reduce to the initial problem with one station.
 
+
+## An easier to understand solution
+
+```java
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        // find a possible candidate
+        int candidate = 0;
+        int leftGas = 0;
+        for(int i=0; i<gas.length; i++) {
+            leftGas += gas[i];
+            leftGas -= cost[i];
+
+            if(leftGas < 0) {
+                leftGas = 0;
+                candidate = i+1;
+            }
+        }
+
+        if(candidate >= gas.length) return -1;
+
+        // prove candidate is valid
+        leftGas = 0;
+        for(int i=candidate; i<gas.length; i++) {
+            leftGas += gas[i];
+            leftGas -= cost[i];
+            if(leftGas < 0) return -1;
+        }
+
+        for(int i=0; i<candidate; i++) {
+            leftGas += gas[i];
+            leftGas -= cost[i];
+            if(leftGas < 0) return -1;
+        }
+
+        return candidate;
+    }
+}
+```
