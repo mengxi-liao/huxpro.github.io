@@ -26,14 +26,10 @@ You may assume no duplicate exists in the array.
 
 ## Solution
 
-Use binary search. 
+Use binary search.
 
-When `m` and `target` are both greater than `nums[l]`, they are both at the left side. User regular binary search rule to reset `l` or `r`.
-
-When `m` and `target` are both less than `nums[l]`, they are both at the right side. User regular binary search rule to reset `l` or `r`.
-
-When `m` is larger than `nums[l]` and `target` is less than `nums[l]`, `target` is at the right side and `m` is at the left side. Set `l` as `m+1`.
-When `m` is less than `nums[l]` and `target` is greater than `nums[l]`, `target` is at the left side and `m` is at the right side. Set `r` as `m-1`.
+When `m` and `target` are on the same side, use binary search rule.
+When `m` and `target` are on the different side. Select the side where the `target` belongs.
 
 #### Code
 ```java
@@ -42,28 +38,40 @@ class Solution {
         int l=0;
         int r=nums.length-1;
         while(l<=r) {
-            int m = l + (r-l)/2;
-            if(target == nums[m]) return m;
-            
-            if(nums[m] > nums[r]){
-                // m is at the left side
-                if(target > nums[m] || target < nums[l]) {
+            int m = l + (r-l) / 2;
+            if(nums[m] == target) return m;
+            if(target < nums[l]) {
+                // target is on the right side
+                if(nums[m] >= nums[l]) {
+                    // m is on the left side
                     l = m+1;
                 }
                 else {
-                    r = m-1;
+                    // m is also on the right side
+                    if(nums[m] > target) {
+                        r = m - 1;
+                    }
+                    else {
+                        l = m + 1;
+                    }
                 }
-            } else {
-                // m is at the right side
-                if(target > nums[m] && target <= nums[r]) {
-                    l = m+1;
+            }
+            else {
+                // target is on the left side
+                if(nums[m] >= nums[l]) {
+                    // m is also on the left side
+                    if(nums[m] > target) {
+                        r = m - 1;
+                    }
+                    else {
+                        l = m + 1;
+                    }
                 }
                 else {
-                    r = m-1;
+                    r = m - 1;
                 }
             }
         }
-        
         return -1;
     }
 }

@@ -39,6 +39,8 @@ For example, the following tree will have a result of `1,2,X,X,3,4,X,X,5,X,X`
 
 #### Build the Tree from the Code
 
+The idea is simple: print the tree in pre-order traversal and use "X" to denote null node and split node with ",". We can use a StringBuilder for building the string on the fly. For deserializing, we use a Queue to store the pre-order traversal and since we have "X" as null node, we know exactly how to where to end building subtree.
+
 To restore a tree, we traverse each node in the code. The first node will always be the root of the tree we are building. Then the following is the code for the left subtree followed by the code of the right subtree.
 
 ```
@@ -76,40 +78,27 @@ Here is a sample solution.
 
 ```java
 public class Codec {
-    
-    private String SPLITTER = ",";
-    private String END = "X";
-    
+
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        StringBuilder sb = new StringBuilder();
-        buildString(root, sb);
-        return sb.toString();
-    }
-    
-    public void buildString(TreeNode node, StringBuilder sb) {
-        if(node == null) sb.append(END).append(SPLITTER);
-        else {
-            sb.append(node.val).append(SPLITER);
-            buildString(node.left, sb);
-            buildString(node.right, sb);
-        }
+        if(root == null) return "X";
+        return root.val + "," + serialize(root.left) + "," + serialize(root.right);
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        Queue<String> q = new LinkedList();
-        q.addAll(Arrays.asList(data.split(SPLITTER)));
+        Queue<String> q = new LinkedList<String>();
+        q.addAll(Arrays.asList(data.split(",")));
         return deserialize(q);
     }
-    
-    public TreeNode deserialize(Queue<String> data) {
-        String val = data.poll();
-        if(val.equals(END)) return null;
-        TreeNode root = new TreeNode(Integer.valueOf(val));
-        root.left = deserialize(data);
-        root.right = deserialize(data);
-        
+
+    public TreeNode deserialize(Queue<String> q) {
+        String rootVal = q.poll();
+        if(rootVal.equals("X")) return null;
+        TreeNode root = new TreeNode(Integer.valueOf(rootVal));
+        root.left = deserialize(q);
+        root.right = deserialize(q);
+
         return root;
     }
 }

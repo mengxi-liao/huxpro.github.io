@@ -30,7 +30,6 @@ class Solution {
     public int countNodes(TreeNode root) {
         TreeNode node = root;
         int count = 0;
-        int level = 1;
         int leftHeight = getLeftHeight(node);
         while(node != null) {
             int l2 = getLeftHeight(node.right);
@@ -69,43 +68,38 @@ TODO
 #### Code
 ```java
 class Solution {
-    public int[] searchRange(int[] nums, int target) {
-        if(nums.length == 0) return new int[]{-1, -1};
-        int idx = firstEleEqual(nums, target);
-        int idx2 = lastEleEqual(nums, target);
-        return new int[]{idx, idx2};
+    public int countNodes(TreeNode root) {
+        return countNodes(root, getHeight(root));
     }
     
-    private int firstEleEqual(int[] nums, int target) {
-        int l=0, r=nums.length-1;
-        while(l<r) {
-            int m = l + (r-l)/2;
-            if(nums[m] >= target) {
-                r=m;
-            }
-            else {
-                l=m+1;   
-            }
+    public int countNodes(TreeNode root, int height) {
+        if(root == null) return 0;
+        int count = 1;
+        
+        int rightChildHeight = getHeight(root.right);
+        int leftChildHeight = height - 1;
+
+        if(leftChildHeight == rightChildHeight) {
+            count += Math.pow(2,leftChildHeight)-1;
+            count += countNodes(root.right, rightChildHeight);
+        }
+        else {
+            count += Math.pow(2,rightChildHeight) - 1;
+            count += countNodes(root.left, leftChildHeight);
         }
         
-        if(nums[r] != target) return -1;
-        return r;
+        return count;
+        
     }
     
-    private int lastEleEqual(int[] nums, int target) {
-        int l=0, r=nums.length-1;
-        while(l<r) {
-            int m = l + (r-l+1)/2;
-            if(nums[m] <= target) {
-                l=m;
-            }
-            else {
-                r=m-1;   
-            }
+    private int getHeight(TreeNode node) {
+        int height = 0;
+        while(node != null) {
+            node = node.left;
+            height ++;
         }
         
-        if(nums[l] != target) return -1;
-        return l;
+        return height;
     }
 }
 ```

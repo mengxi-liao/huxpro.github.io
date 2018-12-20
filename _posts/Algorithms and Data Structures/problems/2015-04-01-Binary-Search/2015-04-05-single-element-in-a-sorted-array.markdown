@@ -33,7 +33,20 @@ Output: 10
 **Note:** Your solution should run in O(log n) time and O(1) space.
 
 ## Solution
-TODO
+Use binary search. Analyze a few different cases:
+
+```
+[1,1,2,3,3] => m is even, nums[m] != nums[m+1]
+[1,2,2,3,3] => m is even, nums[m] != nums[m+1]
+[1,1,2,2,3] => m is even, nums[m] == nums[m+1]
+
+[1,2,2] => m is odd, nums[m] == nums[m+1]
+[1,1,2,2,3,3,4] => m is odd, nums[m] == nums[m+1]
+[1,1,2] => m is odd, nums[m] != nums[m+1]
+[1,1,2,2,3,3,4] => m is odd, nums[m] != nums[m+1]
+
+For each case, which side should we choose?
+```
 
 #### Code
 ```java
@@ -48,7 +61,7 @@ class Solution {
             if(nums[m] == nums[m+1]) l = m+2;
             else r = m;
         }
-        
+
         return nums[l];
     }
 }
@@ -60,7 +73,7 @@ class Solution {
         while(l < r) {
             int mid = (l + r) / 2;
             if(mid % 2 == 0) {
-                // if the leftside excluding mid has 
+                // if the leftside excluding mid has
                 // no single element, mid should be a new number
                 if(nums[mid] == nums[mid+1]) {
                     // mid is a new number, leftside has no single number
@@ -73,7 +86,7 @@ class Solution {
                 }
             }
             else {
-                // if the leftside including mid has 
+                // if the leftside including mid has
                 // no single element, mid should be an old number
                 if(nums[mid] == nums[mid-1]) {
                     // mid is an old number, select the right side
@@ -85,7 +98,6 @@ class Solution {
                 }
             }
         }
-            
         return nums[l];
     }
 }
