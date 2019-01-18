@@ -38,7 +38,7 @@ class Solution {
             }
             if(!found) primes.add(i);
         }
-        
+
         return primes.size();
     }
 }

@@ -60,28 +60,26 @@ class Solution {
 ```java
 class Solution {
     public int maxProduct(int[] nums) {
-        if(nums.length == 0) return 0;
         if(nums.length == 1) return nums[0];
-
-        int maxPos = 0;
-        int minNeg = 0;
-
+        int[] pos = new int[nums.length];
+        int[] neg = new int[nums.length];
         int max = nums[0];
-
-        for(int i=0; i<nums.length; i++) {
-            if(nums[i] >= 0){
-                maxPos = maxPos == 0 ? nums[i] : maxPos * nums[i];
-                minNeg = minNeg == 0 ? 0 : minNeg * nums[i];
+        if(nums[0] >= 0) pos[0] = nums[0];
+        else neg[0] = nums[0];
+        for(int i=1; i<nums.length; i++) {
+            if(nums[i] == 0) neg[i] = pos[i] = 0;
+            else if(nums[i] > 0) {
+                if(pos[i-1] > 0) pos[i] = nums[i] * pos[i-1];
+                else if(pos[i-1] == 0) pos[i] = nums[i];
+                if(neg[i-1] < 0) neg[i] = nums[i] * neg[i-1];
             }
-            else {
-               int maxPosTemp = maxPos;
-               maxPos = minNeg == 0 ? 0 : minNeg * nums[i];
-               minNeg = maxPosTemp == 0 ? nums[i] : maxPosTemp * nums[i];
+            else if(nums[i] < 0) {
+                if(pos[i-1] > 0) neg[i] = nums[i] * pos[i-1];
+                else if(pos[i-1] == 0) neg[i] = nums[i];
+                if(neg[i-1] < 0) pos[i] = nums[i] * neg[i-1];
             }
-
-            max = Math.max(max, maxPos);
+            max = Math.max(pos[i], max);
         }
-
         return max;
     }
 }

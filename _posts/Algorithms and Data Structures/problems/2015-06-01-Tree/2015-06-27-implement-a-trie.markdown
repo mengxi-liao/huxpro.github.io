@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Implement a Trie"
+title:      "Problem: Implement a Trie"
 date:       2017-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"

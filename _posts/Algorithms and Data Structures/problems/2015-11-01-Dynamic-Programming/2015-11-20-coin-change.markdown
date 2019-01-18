@@ -11,7 +11,7 @@ algnote-tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Dynamic Programming
-    - Hard
+    - Medium
 ---
 
 ## Question
@@ -82,24 +82,30 @@ Use dynamic programming
 #### Code
 ```java
 class Solution {
-  public int coinChange(int[] coins, int amount) {
-    Integer[] cache = new Integer[amount+1];
-    cache[0] = 0;
-
-    for(int i=1; i<=amount; i++) {
-      for(int c:  coins) {
-        if(i-c >= 0 && cache[i-c] != null) {
-          if(cache[i]==null)
-            cache[i] = cache[i-c]+1;
-          else
-            cache[i] = Math.min(cache[i], cache[i-c]+1);
+    public int coinChange(int[] coins, int amount) {
+        int[] cache = new int[amount+1];
+        Arrays.fill(cache, -1);
+        cache[0] = 0;
+        for(int v=1; v<=amount; v++) {
+            for(int c: coins) {
+                if(v == c) cache[v] = 1;
+                if(v - c > 0 && cache[v-c] != -1) {
+                    if(cache[v] == -1) cache[v] = cache[v-c] + 1;
+                    else cache[v] = Math.min(cache[v-c] + 1, cache[v]);
+                }
+            }
         }
-      }
-    }
 
-    return cache[amount] == null? -1 : cache[amount];
-  }
+        if(cache[amount] != -1) return cache[amount];
+        return -1;
+    }
 }
+
+/*
+when v=0, cache[0] = 0;
+for each ci and existing cache[v-ci]:
+    cache[v] = min(cache[v-c1] + 1, cache[v-c2] + 1, ..., cache[v-cn]+1)
+*/
 ```
 
 ## Performance

@@ -45,7 +45,6 @@ class Solution {
         // pick a element nums[second] that is larger than num[first] and
         // second > first.
         int first = -1;
-        int minIndex = nums.length-1;
         for(int i=nums.length-1; i>=1; i--) {
             if(nums[i-1] < nums[i]){
                 first = i-1;
@@ -105,4 +104,5 @@ A few important test cases:
 [1,2,3] => [3,2,1]
 [1] => [1]
 [3,2,5,4,1] => [3,4,1,2,5]
+
 ```

@@ -35,37 +35,32 @@ Be careful to the edge case
 ```java
 class Solution {
     public List<String> restoreIpAddresses(String s) {
-        return build(s, 0, 4);
+        return restore(s, 4);
     }
 
-    public List<String> build(String s, int start, int parts) {
-        List<String> results = new ArrayList();
-        if(start >= s.length()) return results;
-        if(parts == 1) {
-            String leftPart = s.substring(start, s.length());
-            if(validPart(leftPart)) {
-                results.add(leftPart);
-            }
+    public List<String> restore(String s, int num) {
+        List<String> results = new ArrayList<>();
+        if(s.length() == 0 || s.length() > num*3) return results;
+        if(num == 1 && validDigits(s)) {
+            results.add(s);
             return results;
         }
-
-        for(int i=start; i<start + 3 && i<s.length(); i++) {
-            String part = s.substring(start, i+1);
-            if(validPart(part)) {
-                List<String>followingParts = build(s, i+1, parts - 1);
-                for(String follow : followingParts) {
-                    results.add(part + '.' + follow);
-                }
+        for(int i=1; i<=3; i++) {
+            if(s.length() < i) break;
+            String head = s.substring(0,i);
+            if(!validDigits(head)) continue;
+            List<String> subResults = restore(s.substring(i),num-1);
+            for(String sub:subResults) {
+                results.add(head+"."+sub);
             }
         }
-
         return results;
     }
 
-    public boolean validPart(String part) {
-        if(part.charAt(0) == '0' && part.length() > 1) return false;
-        if(part.length() > 3) return false;
-        int v = Integer.valueOf(part);
+    private boolean validDigits(String digits) {
+        if(digits.charAt(0) == '0' && digits.length() > 1) return false;
+        if(digits.length() > 3) return false;
+        int v = Integer.valueOf(digits);
         return v <= 255 && v >= 0;
     }
 }
