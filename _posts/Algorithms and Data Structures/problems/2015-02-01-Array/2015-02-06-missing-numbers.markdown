@@ -137,4 +137,4 @@ class Solution {
 
 #### Performance
 
-As every element is visited once, the time complexity of the solution is O(1). Only constant extra space is used.
+As every element is visited once, the time complexity of the solution is O(n). Only constant extra space is used.

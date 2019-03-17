@@ -87,3 +87,59 @@ class Solution {
 
 ## Performance
 TODO
+
+## Code
+```
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int len1 = len(l1);
+        int len2 = len(l2);
+        ListNode node = add(l1, l2, len1, len2);
+        if(node.val >= 10) {
+            ListNode newNode = new ListNode(node.val/10);
+            node.val = node.val % 10;
+            newNode.next = node;
+            return newNode;
+        }
+        else {
+            return node;
+        }
+    }
+    
+    private ListNode add(ListNode l1, ListNode l2, int len1, int len2){
+        ListNode node;
+        if(len1 == 1 && len2 == 1) {
+            return new ListNode(l1.val + l2.val);
+        }
+    
+        ListNode newNode;
+        ListNode nextNode;
+        int val;
+        if(len1 > len2) {
+            nextNode = add(l1.next, l2, len1-1, len2);
+            val = l1.val+nextNode.val/10;
+        }
+        else if(len1 < len2) {
+            nextNode = add(l1, l2.next, len1, len2-1);
+            val = l2.val+nextNode.val/10;
+        }
+        else {
+            nextNode = add(l1.next, l2.next, len1-1, len2-1);
+            val = l1.val+l2.val+nextNode.val/10;
+        }
+        newNode = new ListNode(val);
+        newNode.next = nextNode; 
+        nextNode.val = nextNode.val % 10;
+        return newNode;
+    }
+    
+    private int len(ListNode l) {
+        int count = 0;
+        while(l != null) {
+            count++;
+            l = l.next;
+        }
+        return count;
+    }
+}
+```

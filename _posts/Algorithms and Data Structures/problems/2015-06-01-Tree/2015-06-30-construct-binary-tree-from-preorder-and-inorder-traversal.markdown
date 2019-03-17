@@ -57,24 +57,30 @@ Here is a sample solution.
  */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        Map<Integer, Integer> inorderMap = new HashMap<>();
+        Map<Integer, Integer> map = new HashMap<>();
         for(int i=0; i<inorder.length; i++) {
-            inorderMap.put(inorder[i], i);
+            map.put(inorder[i], i);
         }
-        return buildTree(preorder, 0, preorder.length-1, inorderMap, 0, inorder.length-1);
+        
+        Queue<Integer> q = new LinkedList<Integer>();
+        for(int i=0; i<preorder.length; i++) {
+            q.add(preorder[i]);
+        }
+        
+        return buildTree(q, map, inorder, 0, inorder.length-1);
     }
-
-    private TreeNode buildTree(int[] preorder, int p1, int p2, Map<Integer, Integer> inorderMap, int i1, int i2) {
-        if(p1 > p2) return null;
-        TreeNode root = new TreeNode(preorder[p1]);
-        if(p1 == p2) return root;
-
-        int index = inorderMap.get(root.val);
-
-        root.left = buildTree(preorder, p1+1, p1+index-i1, inorderMap, i1, index-1);
-        root.right = buildTree(preorder, p1+index-i1+1, p2, inorderMap, index+1, i2);
-
-        return root;
+    
+    private TreeNode buildTree(Queue<Integer> q, Map<Integer, Integer> map, int[] inorder, int s, int e) {
+        if(q.isEmpty()) return null;
+        if(s>e) return null;
+        
+        Integer val = q.poll();
+        int idx = map.get(val);
+        TreeNode node = new TreeNode(val);
+        node.left = buildTree(q, map, inorder, s, idx-1);
+        node.right = buildTree(q, map, inorder, idx+1, e);
+        
+        return node;
     }
 }
 ```

@@ -83,5 +83,34 @@ class Solution {
 }
 ```
 
+```java
+class Solution {
+    public boolean canCross(int[] stones) {
+        boolean[][] jumpFrom = new boolean[stones.length][stones.length];
+        jumpFrom[0][1] = true;
+        Map<Integer, Integer> indecies = new HashMap<>();
+        for(int i=0; i<stones.length; i++) {
+            indecies.put(stones[i], i);
+        }
+        for(int j=1; j<jumpFrom.length; j++) {
+            for(int i=0; i<j; i++) {
+                if(jumpFrom[i][j]) {
+                    int lastSteps = stones[j] - stones[i];
+                    for(int next = stones[j]+lastSteps-1;  next <= stones[j]+lastSteps+1; next++) {
+                        if(next <= 0) continue;
+                        if(next == stones[stones.length-1]) return true;
+                        if(indecies.containsKey(next)) {
+                            jumpFrom[j][indecies.get(next)] = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+}
+```
+
 ## Performance
-`O(coints*amount)`
+`O(N^2)`

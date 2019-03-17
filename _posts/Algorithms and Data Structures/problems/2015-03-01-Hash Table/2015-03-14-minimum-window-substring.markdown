@@ -11,7 +11,7 @@ algnote-tags:
     - Coding Practice
     - Algorithms and Data Structures
     - Hash Table
-    - Medium
+    - Hard
     - Array
 ---
 
@@ -54,6 +54,8 @@ class Solution {
                 tMap.put(c, count);
                 if(count == 0) visited++;
             }
+
+            // keep the substring between start and end qualified.
             if(visited == tMap.size()) {
                 char startChar = s.charAt(start);
                 while(!tMap.containsKey(startChar) || tMap.get(startChar) < 0) {

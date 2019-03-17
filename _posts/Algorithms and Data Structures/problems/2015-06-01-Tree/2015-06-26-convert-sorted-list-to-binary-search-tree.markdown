@@ -67,7 +67,7 @@ public class Solution {
     // current will be at end+1 after each call
     public TreeNode sortedListToBST(int start, int end){
         if(start > end) return null;
-        
+
         int mid = start + (end-start) / 2;
         // current at start
         TreeNode left = sortedListToBST(start, mid-1);

@@ -38,7 +38,7 @@ class Solution {
         int idx2 = findFirstEqualOrGreater(nums, target+1) - 1;
         return new int[] {idx, idx2};
     }
-    
+
     private int findFirstEqualOrGreater(int[] nums, int target) {
         int l = 0;
         int r = nums.length-1;
@@ -51,7 +51,6 @@ class Solution {
                 r = m-1;
             }
         }
-        
         return l;
     }
 }

@@ -31,15 +31,12 @@ TODO
 ```java
 class Solution {
     public int longestConsecutive(int[] nums) {
-        Set<Integer> set = new HashSet();
-        int max = 0;
-        for(int num : nums) {
-            set.add(num);
-        }
-        
+        Set<Integer> set = new HashSet<>();
+        for(int n:nums) set.add(n);
         Iterator<Integer> itr = set.iterator();
-        while(itr.hasNext()) {
-            int val = itr.next();
+        int len = 0;
+        for(int val: nums) {
+            if(!set.contains(val)) continue;
             int upper = val;
             while(set.contains(upper)) {
                 set.remove(upper);
@@ -50,12 +47,10 @@ class Solution {
                 set.remove(lower);
                 lower--;
             }
-            
-            max = Math.max(max, upper-lower+1);
-            
+
+            len = Math.max(len, upper - lower -1);
         }
-        
-        return max;
+        return len;
     }
 }
 ```

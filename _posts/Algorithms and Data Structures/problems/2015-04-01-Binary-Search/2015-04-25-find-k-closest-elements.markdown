@@ -72,3 +72,45 @@ class Solution {
 `O(log(N - K))`
 It's funny that when K increases,
 the time complexity decrease instead.
+
+#### Code
+class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+
+        // Step1: find the last element that is smaller than x
+        int l=0;
+        int r=arr.length-1;
+        while(l<=r) {
+            int m = l + (r-l)/2;
+            if(nums[m] < target) {
+                l = m+1;
+            }
+            else {
+                r = m-1;
+            }
+        }
+
+        l = r;
+        r = r+1;
+
+        // Step2: expand from the element found, compare the diff to x and add to List.
+        List<Integer> list = new LinkedList<>();
+        while(list.size() < k) {
+            if(l<0) {
+                list.add(arr[r++]);
+            }
+            else if(r>=arr.length) {
+                list.add(0, arr[l--]);
+            }
+            else {
+                if(x - arr[l] <= arr[r] - x) {
+                    list.add(0, arr[l--]);
+                }
+                else {
+                    list.add(arr[r++]);
+                }
+            }
+        }
+        return list;
+    }
+}

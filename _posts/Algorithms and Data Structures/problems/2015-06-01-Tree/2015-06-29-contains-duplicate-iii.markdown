@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Problem: Serialize and Deserialize Binary Tree"
+title:      "Problem: Contain duplicate III"
 date:       2015-02-18 00:00:00
 author:     "Marcy"
 header-img: "img/post-bg-2015.jpg"
@@ -72,3 +72,17 @@ class Solution {
 ## Performance
 
 `O(N lg K)` time complexity as discussed.
+
+## Notes
+
+TreeSet: balanced BST
+O(logn) insert/delete
+
+-
+-
+ceiling
+element
+floor
+-
+-
+-

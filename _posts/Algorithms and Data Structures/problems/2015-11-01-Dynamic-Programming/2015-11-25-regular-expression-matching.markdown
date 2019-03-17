@@ -115,11 +115,9 @@ class Solution {
                 }
                 else if(p.charAt(j-1) == '*') {
                     if(p.charAt(j-2) == s.charAt(i-1) || p.charAt(j-2) == '.') {
-                        cache[i][j] = (cache[i-1][j] || cache[i][j-1] || cache[i][j-2]);
+                        cache[i][j] = (cache[i-1][j] || cache[i][j-1]);
                     }
-                    else {
-                        cache[i][j] = cache[i][j-2];
-                    }
+                    cache[i][j] ||= cache[i][j-2];
                 }
             }
         }
