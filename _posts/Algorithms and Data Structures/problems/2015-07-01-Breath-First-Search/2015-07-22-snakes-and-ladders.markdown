@@ -110,9 +110,7 @@ class Solution {
                         q.offer(adj);
                     }
                 }
-
             }
-
             level ++;
         }
 

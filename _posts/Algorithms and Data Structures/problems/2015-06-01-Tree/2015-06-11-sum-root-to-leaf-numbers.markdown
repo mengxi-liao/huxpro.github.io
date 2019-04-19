@@ -59,7 +59,7 @@ Therefore, sum = 495 + 491 + 40 = 1026.
 TODO
 
 #### Code
-```
+```java
 /**
  * Definition for a binary tree node.
  * public class TreeNode {

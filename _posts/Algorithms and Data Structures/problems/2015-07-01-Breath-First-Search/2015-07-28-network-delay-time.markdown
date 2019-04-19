@@ -28,7 +28,7 @@ Now, we send a signal from a certain node K. How long will it take for all nodes
 Use Djikstra
 
 #### Code
-```
+```java
 class Solution {
     public int networkDelayTime(int[][] times, int N, int K) {
         PriorityQueue<int[]> pq = new PriorityQueue<int[]>((n1, n2) -> n1[1] - n2[1]);

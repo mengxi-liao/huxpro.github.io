@@ -66,55 +66,37 @@ Dynamic Programming + Backtracing + cache
 ```java
 class Solution {
     public List<String> wordBreak(String s, List<String> wordDict) {
-        boolean[][] cache = new boolean[s.length()][wordDict.size()];
-        for(int i=0; i<wordDict.size(); i++) {
-            String w = wordDict.get(i);
-            if(s.startsWith(w)) {
-                cache[w.length()-1][i] = true;
-            }
-        }
-
-        for(int i=1; i<s.length(); i++) {
-            for(int j=0; j<wordDict.size(); j++) {
-                String w = wordDict.get(j);
-                int start = i-w.length()+1;
-                if(start < 0) continue;
-                int end = i;
-                if(s.substring(start, end+1).equals(w)) cache[i][j] = true;
-            }
-        }
-
-        return backtrace(cache, s, wordDict, s.length()-1);
-    }
-
-    // a cache to memorize prev results
-    Map<Integer, List<String>> map = new HashMap<>();
-    public List<String> backtrace(
-        boolean[][] cache,
-        String s,
-        List<String> wordDict,
-        int end) {
-
-        if(map.containsKey(end)) return map.get(end);
-
-        List<String> results = new ArrayList();
-
-        for(int i=0; i<wordDict.size(); i++) {
-            String w = wordDict.get(i);
-            int start = end - w.length() + 1;
-            if(start < 0) continue;
-            if(start == 0 && s.startsWith(w)) {
-                results.add(w);
-            }
-            else if(s.substring(start, end+1).equals(w)){
-                List<String> prevResults = backtrace(cache, s, wordDict, end-w.length());
-                for(String pw: prevResults) {
-                    results.add(pw + " " + w);
+        Set<String> wordSet = new HashSet<>();
+        wordSet.addAll(wordDict);
+        List<Integer>[] prevs = new List[s.length()+1];
+        for(int i=0; i<prevs.length; i++) prevs[i] = new ArrayList<>();
+        prevs[0].add(-1);
+        for(int i=1; i<=s.length(); i++) {
+            for(int j=0; j<i; j++) {
+                if(prevs[j].size() >= 1 && wordSet.contains(s.substring(j, i))) {
+                    prevs[i].add(j);
                 }
             }
         }
-        map.put(end, results);
+
+        List<String> results = new ArrayList<>();
+        List<String> res = new LinkedList<>();
+        backtrace(s.length(), s, prevs, res, results);
         return results;
+    }
+
+    private void backtrace(int end, String s, List<Integer>[] prevs, List<String> res, List<String> results) {
+        if(end == 0) {
+            results.add(String.join(" ", res));
+            return;
+        }
+
+        for(int i=0; i<prevs[end].size(); i++) {
+            int start = prevs[end].get(i);
+            res.add(0, s.substring(start, end));
+            backtrace(start, s, prevs, res, results);
+            res.remove(0);
+        }
     }
 }
 ```

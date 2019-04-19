@@ -56,7 +56,7 @@ iterator.hasNext(); // return false
 
 TODO
 
-Use a stack do preorder traversal.
+Use a stack do inorder traversal.
 
 #### Code
 

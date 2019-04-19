@@ -74,40 +74,27 @@ TODO
 ```java
 class Solution {
     public boolean hasPath(int[][] maze, int[] start, int[] destination) {
-        if(maze==null) return false;
-        boolean[][] visited = new boolean[maze.length][maze[0].length];
-        return dfs(maze, start[0], start[1], destination, visited);
+        if(maze[start[0]][start[1]] == 2) return false; //visited
+        if(start[0] == destination[0] && start[1] == destination[1]) return true;
+        maze[start[0]][start[1]] = 2;
 
-    }
-    public boolean dfs(int[][] maze, int row, int col, int[] end, boolean[][] visited){
-        if(visited[row][col]) return false;
-        if(row==end[0] && col==end[1]) return true;
-        visited[row][col] = true;
+        int i=start[0]-1;
+        while(i>=0 && maze[i][start[1]] != 1) i--;
+        if(hasPath(maze, new int[] {i+1, start[1]}, destination)) return true;
 
-        // For each point, visit all the stop points from this point may get to.
-        int top = row;
-        for(int i=row+1;i<maze.length && maze[i][col]!=1;i++){
-            top++;
-        }
+        i=start[0]+1;
+        while(i<maze.length && maze[i][start[1]] != 1) i++;
+        if(hasPath(maze, new int[] {i-1, start[1]}, destination)) return true;
 
-        int bottom = row;
-        for(int i=row-1;i>=0 && maze[i][col]!=1;i--){
-            bottom--;
-        }
+        i=start[1]-1;
+        while(i>=0 && maze[start[0]][i] != 1) i--;
+        if(hasPath(maze, new int[] {start[0], i+1}, destination)) return true;
 
-        int left = col;
-        for(int i=left-1;i>=0 && maze[row][i]!=1;i--){
-            left--;
-        }
+        i=start[1]+1;
+        while(i<maze[0].length && maze[start[0]][i] != 1) i++;
+        if(hasPath(maze, new int[] {start[0], i-1}, destination)) return true;
 
-        int right = col;
-        for(int i=right+1;i<maze[0].length && maze[row][i]!=1;i++){
-            right++;
-        }
-        return dfs(maze, top, col, end, visited) ||
-               dfs(maze, bottom, col, end, visited) ||
-               dfs(maze, row, left, end, visited) ||
-               dfs(maze, row, right, end, visited);
+        return false;
     }
 }
 ```

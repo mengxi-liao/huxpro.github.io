@@ -76,6 +76,7 @@ class Solution {
     public int romanToInt(String s) {
         if(s.length() == 0) return 0;
         Map<String, Integer> map = new LinkedHashMap<>();
+        // two chars much be checked first
         map.put("IV", 4);
         map.put("IX", 9);
         map.put("XL", 40);
@@ -114,6 +115,7 @@ class Solution {
     public String intToRoman(int num) {
         if(num == 0) return "";
         Map<String, Integer> map = new LinkedHashMap<>();
+        // from big to small
         map.put("M", 1000);
         map.put("CM", 900);
         map.put("D", 500);
